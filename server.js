@@ -10,7 +10,6 @@ app.use(express.static(__dirname))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))//make the posted message appear instead of just empty object
 
-var dbUrl = 'mongodb+srv://nerd:pythonist2020@cluster0-iyouw.mongodb.net/<dbname>?retryWrites=true&w=majority'
 
 var Message = mongoose.model('Message',{
     name: String,
@@ -50,9 +49,7 @@ io.on('connection', (socket)=>{
 
 })
 
-mongoose.connect(dbUrl, {useUnifiedTopology: true,useNewUrlParser: true}, (err)=>{
-    console.log('mogo db connected')
-})
+
 //replaced app.listen with http.listen
 var server = http.listen(5000, ()=>{
     console.log("listening on port ", server.address().port)
